@@ -7,8 +7,7 @@
                 category.title }}
             </router-link>
         </ul>
-        <PostsComponent :category_id="activeCategoryId"/>
-
+        <PostsComponent />
     </div>
 </template>
 
@@ -31,7 +30,7 @@
                 this.activeCategoryId = id;
             }
         },
-        mounted() {
+        beforeMount() {
             //todo проверка если корень сайта или пустой масив с категориями
 
             axios
@@ -40,6 +39,7 @@
                         this.headerCategories = response.data.data
                         let categorySlug = this.$route.path.split('/').reverse()[0];
                         this.activeCategoryId = this.headerCategories.find(el => el.slug === categorySlug).id
+                        this.$root.$emit('change-active-category', this.activeCategoryId)
                     }
                 );
         }
