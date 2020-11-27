@@ -2,7 +2,7 @@
     <div>
         <h2>Categories:</h2>
         <ul>
-            <router-link v-for="category in headerCategories" :key="category.title" :to="`category/${category.slug}`">{{ category.title }}</router-link>
+            <router-link v-for="category in headerCategories" :key="category.title" :to="`/category/${category.slug}`">{{ category.title }}</router-link>
         </ul>
     </div>
 </template>
