@@ -2,7 +2,7 @@
     <div>
         <h2>Categories:</h2>
         <ul>
-            <li v-for="category in headerCategories.data.data" :key="category.title">{{ category.title }}</li>
+            <router-link v-for="category in headerCategories" :key="category.title" :to="`category/${category.slug}`">{{ category.title }}</router-link>
         </ul>
     </div>
 </template>
@@ -20,7 +20,7 @@
         mounted() {
             axios
                 .get('https://blog.lpage.cc/api/v2/categories')
-                .then(response => (this.headerCategories = response));
+                .then(response => (this.headerCategories = response.data.data));
         }
     }
 </script>
